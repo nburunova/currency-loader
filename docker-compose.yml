@@ -1,0 +1,18 @@
+version: '2.1'
+
+services:
+  currency-loader-build:
+    image: golang:1.15
+    working_dir: /app/currency-loader
+    entrypoint: /docker-entrypoint-dev.sh
+    command: build/go/build.sh
+    volumes:
+      - ./build/go/docker-entrypoint-dev.sh:/docker-entrypoint-dev.sh:ro
+      - .:/app/currency-loader:rw
+
+  currency-loader:
+    image: currency-loader-app:${IMAGE_VERSION-''}
+    working_dir: /app
+    build:
+      context: .
+      dockerfile: build/go/Dockerfile
