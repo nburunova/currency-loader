@@ -11,7 +11,7 @@ services:
       - .:/app/currency-loader:rw
 
   currency-loader:
-    image: currency-loader-app:${IMAGE_VERSION-''}
+    image: currency-loader-app
     working_dir: /app
     build:
       context: .

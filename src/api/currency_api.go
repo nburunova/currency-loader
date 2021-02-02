@@ -53,16 +53,6 @@ func (api *CurrencyAPI) Routers() *chi.Mux {
 	return r
 }
 
-func protected(f http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		_, _, err := jwtauth.FromContext(r.Context())
-		if err != nil {
-			render.Render(w, r, ErrorRenderer(err))
-		}
-		f(w, r)
-	}
-}
-
 func (api *CurrencyAPI) currenciesHandler(w http.ResponseWriter, r *http.Request) {
 	pageNum, err := pageNum(r)
 	if err != nil {

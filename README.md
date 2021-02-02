@@ -9,6 +9,30 @@ API должно быть закрыто bearer авторизацией.
 1. Хранить историю курсов за последний 30 минут
 2. Написать конфигфайл, для запуска в докере
 
+#  Как запустить
+
+Собрать приложение
+```
+docker-compose run --rm currency-loader-build
+```
+
+Собрать docker образ
+```
+docker-compose build currency-loader 
+```
+
+Запустить docker образ
+```
+docker-compose run -p 5000:5000 --name currency-loader --rm currency-loader
+```
+
+Остановить контейнер
+```
+docker stop  currency-loader
+```
+
+Теперь можно выполянть запросы
+
 ```
 curl -X GET \
   'http://localhost:5000/currencies?page=2' \
